@@ -76,6 +76,7 @@ public class FactionProvider {
             ships.add(hullSpec);
         }
         return ships;
+	}
 
     public List<WeaponSpecAPI> getAllWeapons() {
         if (BooleanSettings.MARKET_CODEX_ITEMS.get()) {
