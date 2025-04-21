@@ -22,6 +22,8 @@ import stelnet.filter.ShipHullIsInCodex;
 import stelnet.settings.BooleanSettings;
 import stelnet.util.CollectionUtils;
 
+import static com.fs.starfarer.api.impl.campaign.CoreScript.log;
+
 public class FactionProvider {
 
     private static transient List<FactionAPI> factions;
