@@ -64,10 +64,18 @@ public class FactionProvider {
         }
         List<ShipHullSpecAPI> ships = new LinkedList<>();
         for (String shipId : getAllShipIds()) {
-            ships.add(Global.getSettings().getHullSpec(shipId));
+            //ships.add(Global.getSettings().getHullSpec(shipId));
+            ShipHullSpecAPI hullSpec;
+            try {
+                hullSpec = Global.getSettings().getHullSpec(shipId);
+            } catch (RuntimeException e) {
+                // Starsector error message: "Ship hull variant [%s] not found!"
+                log.warn("Hull spec with ship ID `" + shipId + "` missing in `/data/hulls/`. Ship hull will not be visible in the Stelnet!");
+                continue;
+            }
+            ships.add(hullSpec);
         }
         return ships;
-    }
 
     public List<WeaponSpecAPI> getAllWeapons() {
         if (BooleanSettings.MARKET_CODEX_ITEMS.get()) {
